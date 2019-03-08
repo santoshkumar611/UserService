@@ -6,8 +6,10 @@
           <div class="content">
             <p class="has-text-centered is-size-5">{{user.name}}</p>
             <ul>
+              <li><strong>Id:</strong> {{user.role}}</li>
+              <li><strong>Name:</strong> {{user.name}}</li>
               <li><strong>Role:</strong> {{user.role}}</li>
-              <li><strong>Pokemon:</strong>{{user.pokemon}}</li>
+              <li><strong>DOB:</strong>{{user.dob | date}}</li>
             </ul>
           </div>
         </div>

@@ -1,34 +1,35 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs'; // Add imports
+import {User} from '../../models/user';
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
 
-  users: Array<object> = [  // Add employee object
+  users: User[] = [  // Add employee object
     {
-      id: '1',
+      id: 1,
       name: 'Jane',
       role: 'Designer',
-      pokemon: 'Blastoise'
+      dob: new Date("12-12-2000")
     },
     {
-      id: '2',
+      id: 2,
       name: 'Bob',
       role: 'Developer',
-      pokemon: 'Charizard'
+      dob: new Date("12-12-2000")
     },
     {
-      id: '3',
+      id: 4,
       name: 'Jim',
       role: 'Developer',
-      pokemon: 'Venusaur'
+      dob:new Date("12-12-2000")
     },
     {
-      id: '4',
+      id: 5,
       name: 'Adam',
       role: 'Designer',
-      pokemon: 'Yoshi'
+      dob: new Date("12-12-2000")
     }
   ];
 
@@ -36,7 +37,18 @@ export class UsersService {
   all(): Observable<Array<object>> {
     return of(this.users);
   }
-  findOne(id: string): Observable<object> {
+
+  addNewUser(user:User): Observable<object> {
+    this.users.push(user);
+    return of(user);
+  }
+
+  removeUser(index: number): Observable<object>{
+    let user = this.users.splice(index,1);
+    return of(user);
+  }
+
+  findOne(id: number): Observable<object> {
     const user = this.users.find((u: any) => {
       return u.id === id;
     });

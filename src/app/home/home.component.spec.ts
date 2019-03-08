@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
+import { UsersService } from '../services/users/users.service';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -21,5 +22,10 @@ describe('HomeComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+  it("should use the userlist from the service", () => {
+    const usersService = fixture.debugElement.injector.get(UsersService);
+    fixture.detectChanges();
+    usersService.all().subscribe(result => expect(result.length).toBeGreaterThan(0));
   });
 });
